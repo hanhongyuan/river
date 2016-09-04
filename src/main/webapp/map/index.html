@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>实时监控</title>
+    <meta name="keywords" content="百度地图鹰眼,鹰眼,轨迹,大数据位置,位置智能" />
+    <meta name="description" content="百度鹰眼，来自百度LBS开放平台，打造最专业的位置轨迹大数据服务平台。" />
+    <!--<link rel="shortcut icon" href="http://api.map.baidu.com/favicon.ico">-->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!--<link rel="stylesheet" href="../content/css/bootstrap.css">-->
+    <link href="static/css/track.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/fontawesome/css/font-awesome.min.css" type="text/css">
+    <link href="static/css/jquery.datetimepicker.css" rel="stylesheet" type="text/css">
+    <link href="static/css/pagination.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=XA9DqG4q3WCGSHVOkVTVhztWjGicL2bG"></script>
+    <!--<script type="text/javascript" src="static/js/jquery.min.js"></script>-->
+    <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+    <!--<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+    <script type="text/javascript" src="static/js/jquery.datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="static/js/jquery.pagination.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="static/js/mousewheel.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="static/js/baiduTemplate.js"></script>
+    <script type="text/javascript" src="static/js/esl/esl.js"></script>
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+</head>
+
+<body>
+    <div id="mapContainer">
+    </div>
+    <div class="title">
+        <p>
+            <span class="name"></span>
+            <span class="ctrl">
+                    <i class="fa fa-chevron-down"></i>
+                </span>
+        </p>
+    </div>
+    <div id="track-btn" class="type-ctr active" data-tag="0">
+        <a href="javascript:void(0)">实时监控</a>
+    </div>
+    <div id="track-btn-2" class="type-ctr" data-tag="1">
+        <a href="javascript:void(0)">历史轨迹</a>
+    </div>
+    <div id="data-box">
+        <div class="panel-mask">
+            <img src="static/images/loading-1.gif" height="82" width="82">
+         </div>
+        <div class="panel">
+            <input type="text" placeholder="请输入关键字" id="searchKey">
+            <span class="search-i">
+                <i class="fa fa-search"></i>
+            </span>
+            <a href="javascript:void(0)" class="btn filter">已选</a>
+            <a href="javascript:void(0)" class="btn clean">清除已选</a>
+            <div id="tracklist-panel"></div>
+
+            <ul id="tracks-pager-ul" class="pagination"></ul>
+        </div>
+        <div id="track-box">
+            <div class="date-panel">
+                <span>查询日期 </span>
+                <div class="date" id="div_date">
+                    <span class="date-title" id="date"></span>
+                    <span class="sele"><i class="fa fa-sort-desc"></i></span>
+                </div>
+            </div>
+            <input type="text" placeholder="请输入关键字" id="searchKey_2">
+            <span class="search-i">
+                <i class="fa fa-search"></i>
+            </span>
+            <a href="javascript:void(0)" class="btn filter">已选</a>
+            <a href="javascript:void(0)" class="btn clean">清除已选</a>
+            <div class="tracks-panel" id="tracks-panel">
+            </div>
+            <ul id="tracks-pager-ul-2" class="pagination"></ul>
+        </div>
+        <div class="tip">
+        </div>
+    </div>
+    <div class="mask">
+        <img src="static/images/loading-1.gif" height="82" width="82">
+    </div>
+    <div class="timeline-ctrl">
+        <canvas id="timeline" width="780px" height="60px"></canvas>
+        <!-- <canvas id="cursor" width="1305px" height="60px"></canvas> -->
+        <canvas id="timeCtr" width="16px" height="60px"></canvas>
+    </div>
+    <div id="time_span"></div>
+    <div class="chart-ctrl" style="width: 80px;">
+        <div class="no-track-tip">请先勾选需要统计的轨迹！</div>
+        <img src="static/images/11.png" height="52" width="80" alt="统计图">
+        <span class="title" style="width: 80px;">巡视员活跃度</span>
+
+    </div>
+    <div class="jiupian" style="width: 80px;">
+        <img src="static/images/22.png" height="52" width="80" alt="纠偏">
+        <span class="title" style="width: 80px;">纠偏</span>
+    </div>
+    <div class="chart-wrap">
+        <div id="chart"></div>
+
+    </div>
+    <div class="map-ctrl zoom-out" title="地图放大">
+        <span><i class="fa fa-plus-circle"></i></span>
+    </div>
+    <div class="map-ctrl zoom-in" title="地图缩小">
+        <span><i class="fa fa-minus-circle"></i></span>
+    </div>
+
+    <script type="text/html" id="tracklist-tmpl">
+        <ul class="tracks-ul">
+            <%for(var i=0; i<size; i++) { %>
+                <li data-id="<%=trackList[i].entity_name%>" data-name="<%=trackList[i].entity_name%>" data-state="<%=trackList[i].state%>">
+                    <%if(trackList[i].checked) { %>
+                        <input type="checkbox" class="cbtest" checked="checked" id="cbtest_<%=trackList[i].entity_name%>" />
+                        <% } else { %>
+                            <input type="checkbox" class="cbtest" id="cbtest_<%=trackList[i].entity_name%>" />
+                            <% } %>
+                                <label for="cbtest_<%=trackList[i].entity_name%>" class="check-box"></label>
+                                <span class="state <%=trackList[i].state%>" title="<%=trackList[i].stateTxt%>"></span>
+                                <span><%=trackList[i].entity_name%></span>
+                </li>
+                <% } %>
+        </ul>
+    </script>
+    <script type="text/html" id="sel-tracklist-tmpl">
+        <ul class="seled-tracks-ul">
+            <%for(var i=0; i<size; i++) { %>
+                <li class="seled-track" id="seled-track-<%=trackList[i].entity_name%>" data-id="<%=trackList[i].entity_name%>" data-name="<%=trackList[i].entity_name%>">
+                    <%if(trackList[i].checked) { %>
+                        <input type="checkbox" class="cbtest" checked="checked" id="cbtest2_<%=trackList[i].entity_name%>" />
+                    <% } else { %>
+                        <input type="checkbox" class="cbtest" id="cbtest2_<%=trackList[i].entity_name%>" />
+                    <% } %>
+                    <label for="cbtest2_<%=trackList[i].entity_name%>" class="check-box"></label>
+                    <span class="sel-track-name"><%=trackList[i].entity_name%></span>
+                    <span class="pro-bar" style="background-color: <%=trackList[i].barBgColor%>"><span class="bar"></span></span>
+                    <span class="process play" title="回放轨迹" data-id="<%=trackList[i].entity_name%>"><i class="fa fa-play"></i></span>
+                </li>
+                <% } %>
+        </ul>
+    </script>
+    <script type="text/javascript" src="static/js/track/demo.js"></script>
+    <script type="text/javascript" src="static/js/demoTrack.js"></script>
+    <script type="text/javascript">
+        var map = new BMap.Map("mapContainer", {
+            // 底图可点功能
+            enableMapClick: true
+        });
+        function mapInit() {
+            var point = new BMap.Point(121.408547, 31.091277);
+            map.centerAndZoom(point, 12);
+        }
+        mapInit();
+        // 设置个性化地图 最大缩放级别 18
+        map.setMaxZoom(18);
+    $(function () {
+
+        window.setInterval(getReports, 5000);
+//        getReports();
+        var modalQueue = [];
+        var token;
+
+        function getReports(){
+            $.ajax({
+                method: 'GET',
+                url: 'http://115.159.86.120:8080/api/reports/unread',
+                headers: {'Authorization': 'Bearer ' + token}
+            }).done(function (result) {
+                if (result && result.length > 0){
+                    result.forEach(function(report){
+                        if (!modalQueue.includes(report.id)) {
+                            modalQueue.push(report.id);
+                            var userName = "\'"+report.inspector.userName+"\'";
+                            console.log('longitude: '+report.longitude);
+                            console.log('latitude: '+report.latitude);
+                            var content;
+                            if (report.fileType == 'txt'){
+                                content = report.content;
+                            } else if (report.fileType == 'image') {
+                                content = '<img width="300" height="280" src="' + report.filePath + '" />';
+                            } else if (report.fileType == 'audio') {
+                                content = '<audio src="'+ report.filePath +'" controls="controls">您的浏览器不支持音频功能</audio>';
+                            }
+                            showReport(report.longitude, report.latitude, content);
+                        }
+                    });
+                }
+            }).fail(function() {
+                getToken();
+            });
+        }
+
+        function getToken() {
+            var data = 'username=' +  encodeURIComponent('juchen') + '&password=' +
+                encodeURIComponent('juchenchen') + '&grant_type=password&scope=read%20write&' +
+                'client_secret=my-secret-token-to-change-in-production&client_id=riverapp';
+            $.ajax({
+                url: 'http://115.159.86.120:8080/oauth/token',
+                method: 'POST',
+                data: data,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json',
+                    'Authorization': 'Basic ' + window.btoa('riverapp' + ':' + 'my-secret-token-to-change-in-production')
+                }
+            }).done(function (response) {
+                token = response.access_token;
+            });
+        }
+
+        function showReport(start, end, message) {
+            var point = new BMap.Point(start, end);
+            var marker = new BMap.Marker(point);
+            var infoWindow = new BMap.InfoWindow(message);
+            map.addOverlay(marker);
+            marker.addEventListener('click', function () {
+                this.openInfoWindow(infoWindow);
+                reportIsReaded();
+            })
+        }
+
+        function reportIsReaded(){
+
+        }
+
+    });
+    </script>
+</body>
+
+</html>

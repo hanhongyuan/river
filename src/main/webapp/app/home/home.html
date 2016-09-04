@@ -1,0 +1,38 @@
+<div ng-cloak>
+    <div class="row">
+        <!--<div class="col-md-4">-->
+        <!--<span class="hipster img-responsive img-rounded"></span>-->
+        <!--</div>-->
+        <!--<div class="col-md-8">-->
+        <!--&lt;!&ndash;<h1 translate="home.title">Welcome, Java Hipster!</h1>&ndash;&gt;-->
+
+        <!--</div>-->
+
+        <div class="col-md-6">
+            <div class="panel-heading blue"><h3>年里程统计(KM)</h3></div>
+            <div class="panel-body">
+                <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels"
+                        chart-click="onClick" chart-hover="onHover" chart-series="series" chart-options="options"
+                        chart-dataset-override="datasetOverride"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel-heading blue" style="text-align: center;"><h3>巡视员里程前十(KM)</h3></div>
+            <div class="panel-body">
+                <canvas id="pie" class="chart chart-pie"
+                        chart-data="insData" chart-labels="insLabels" chart-options="insOptions">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-heading blue" style="padding-left: 2em;"><h3>巡视员里程统计(KM)</h3></div>
+            <div class="panel-body">
+                <canvas id="base" class="chart-bar"
+                        chart-data="barData" chart-labels="barLabels" chart-colors="barColors" >
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>

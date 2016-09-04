@@ -1,0 +1,64 @@
+<div>
+    <h2 translate="riverApp.inspector.home.title">Inspectors</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="inspector.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="riverApp.inspector.home.createLabel">
+                        Create new Inspector
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span translate="global.field.id">ID</span></th>
+                    <th><span translate="riverApp.inspector.userName">User Name</span></th>
+                    <th><span translate="riverApp.inspector.deviceSeq">Device Seq</span></th>
+                    <th><span translate="riverApp.inspector.workDay">Work Day</span></th>
+                    <th><span translate="riverApp.inspector.workTime">Work Time</span></th>
+                    <th><span translate="riverApp.inspector.offWorkTime">Off Work Time</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="inspector in vm.inspectors track by inspector.id">
+                    <td><a ui-sref="inspector-detail({id:inspector.id})">{{inspector.id}}</a></td>
+                    <td>{{inspector.userName}}</td>
+                    <td>{{inspector.deviceSeq}}</td>
+                    <td>{{inspector.workDay}}</td>
+                    <td>{{inspector.workTime}}</td>
+                    <td>{{inspector.offWorkTime}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="inspector-detail({id:inspector.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="inspector.edit({id:inspector.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="inspector.delete({id:inspector.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

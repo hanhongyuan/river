@@ -1,0 +1,29 @@
+{
+    "riverApp": {
+        "report" : {
+            "home": {
+                "title": "问题上报",
+                "createLabel": "问题上报",
+                "createOrEditLabel": "上报或修改问题",
+                "search": "搜索上报问题"
+            },
+            "created": "A new Report is created with identifier {{ param }}",
+            "updated": "A Report is updated with identifier {{ param }}",
+            "deleted": "{{ param }} 删除了上报问题",
+            "delete": {
+                "question": "确定删除 {{ id }}?"
+            },
+            "detail": {
+                "title": "问题上报"
+            },
+            "reportDateTime": "上报时间",
+            "content": "上报内容",
+            "fileType": "文件类型",
+            "filePath": "文件路径",
+            "longitude": "经度",
+            "latitude": "纬度",
+            "isRead": "是否已读",
+            "inspector": "上报人"
+        }
+    }
+}

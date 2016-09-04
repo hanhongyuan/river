@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span translate="riverApp.inspector.detail.title">Inspector</span> {{vm.inspector.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="riverApp.inspector.userName">User Name</span></dt>
+        <dd>
+            <span>{{vm.inspector.userName}}</span>
+        </dd>
+        <dt><span translate="riverApp.inspector.deviceSeq">Device Seq</span></dt>
+        <dd>
+            <span>{{vm.inspector.deviceSeq}}</span>
+        </dd>
+        <dt><span translate="riverApp.inspector.workDay">Work Day</span></dt>
+        <dd>
+            <span>{{vm.inspector.workDay}}</span>
+        </dd>
+        <dt><span translate="riverApp.inspector.workTime">Work Time</span></dt>
+        <dd>
+            <span>{{vm.inspector.workTime}}</span>
+        </dd>
+        <dt><span translate="riverApp.inspector.offWorkTime">Off Work Time</span></dt>
+        <dd>
+            <span>{{vm.inspector.offWorkTime}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="inspector-detail.edit({id:vm.inspector.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

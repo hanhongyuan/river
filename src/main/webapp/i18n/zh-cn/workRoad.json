@@ -1,0 +1,24 @@
+{
+    "riverApp": {
+        "workRoad" : {
+            "home": {
+                "title": "河道/道路信息",
+                "createLabel": "初始化河道/道路数据",
+                "createOrEditLabel": "初始化或修改河道/道路数据",
+                "search": "搜索河道/道路数据"
+            },
+            "created": "{{ param }} 初始化了河道/道路数据",
+            "updated": "{{ param }} 更新了河道/道路数据",
+            "deleted": "{{ param }} 删除了河道/道路数据",
+            "delete": {
+                "question": "确定删除 {{ roadName }}?"
+            },
+            "detail": {
+                "title": "河道/道路信息"
+            },
+            "roadName": "河道/道路名称",
+            "points": "经纬度采集点",
+            "inspector": "巡视员"
+        }
+    }
+}

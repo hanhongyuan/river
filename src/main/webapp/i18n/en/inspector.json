@@ -1,0 +1,29 @@
+{
+    "riverApp": {
+        "inspector" : {
+            "home": {
+                "title": "Inspectors",
+                "createLabel": "Create a new Inspector",
+                "createOrEditLabel": "Create or edit a Inspector",
+                "search": "Search for Inspector"
+            },
+            "created": "A new Inspector is created with identifier {{ param }}",
+            "updated": "A Inspector is updated with identifier {{ param }}",
+            "deleted": "A Inspector is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Inspector {{ id }}?"
+            },
+            "detail": {
+                "title": "Inspector"
+            },
+            "userName": "User Name",
+            "deviceSeq": "Device Seq",
+            "workDay": "Work Day",
+            "workTime": "Work Time",
+            "offWorkTime": "Off Work Time",
+            "workRoad": "Work Road",
+            "report": "Report",
+            "message": "Message"
+        }
+    }
+}

@@ -1,0 +1,43 @@
+entity Inspector {
+	id Long,
+    userName String,
+    deviceSeq String,
+    workDay String,
+    workTime String,
+    offWorkTime String
+}
+
+entity WorkRoad {
+	id Long,
+    roadName String,
+    points String //[{"longitude": 108.46, "latitude": 46.22}, {"longitude": 108.46, "latitude": 46.22}]
+}
+
+entity Report {
+	id Long,
+    reportDateTime ZonedDateTime,
+    content String,
+    fileType String,
+    filePath String,
+    longitude Double,
+    latitude Double
+}
+
+entity Message {
+	id Long,
+    title String,
+    content String,
+    createDateTime ZonedDateTime
+}
+
+relationship OneToMany {
+	Inspector{workRoad} to WorkRoad
+}
+
+relationship OneToMany {
+	Inspector{report} to Report
+}
+
+relationship OneToMany {
+	Inspector{message} to Message
+}

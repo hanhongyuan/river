@@ -1,0 +1,57 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipType": "one-to-many",
+      "relationshipName": "workRoad",
+      "otherEntityName": "workRoad",
+      "otherEntityRelationshipName": "inspector"
+    },
+    {
+      "relationshipId": 2,
+      "relationshipType": "one-to-many",
+      "relationshipName": "report",
+      "otherEntityName": "report",
+      "otherEntityRelationshipName": "inspector"
+    },
+    {
+      "relationshipId": 3,
+      "relationshipType": "one-to-many",
+      "relationshipName": "message",
+      "otherEntityName": "message",
+      "otherEntityRelationshipName": "inspector"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "userName",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 2,
+      "fieldName": "deviceSeq",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 3,
+      "fieldName": "workDay",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 4,
+      "fieldName": "workTime",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 5,
+      "fieldName": "offWorkTime",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20160828082730",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "entityTableName": "inspector"
+}

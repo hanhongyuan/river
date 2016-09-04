@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span translate="riverApp.message.detail.title">Message</span> {{vm.message.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="riverApp.message.title">Title</span></dt>
+        <dd>
+            <span>{{vm.message.title}}</span>
+        </dd>
+        <dt><span translate="riverApp.message.content">Content</span></dt>
+        <dd>
+            <span>{{vm.message.content}}</span>
+        </dd>
+        <dt><span translate="riverApp.message.createDateTime">Create Date Time</span></dt>
+        <dd>
+            <span>{{vm.message.createDateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="riverApp.message.inspector">Inspector</span></dt>
+        <dd>
+            <a ui-sref="inspector-detail({id:vm.message.inspector.id})">{{vm.message.inspector.userName}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="message-detail.edit({id:vm.message.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

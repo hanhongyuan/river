@@ -1,0 +1,33 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipName": "inspector",
+      "otherEntityName": "inspector",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 2,
+      "fieldName": "content",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 3,
+      "fieldName": "createDateTime",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "changelogDate": "20160828082733",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "entityTableName": "message"
+}

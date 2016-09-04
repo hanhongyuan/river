@@ -1,0 +1,44 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myWorkRoadLabel" translate="riverApp.workRoad.home.createOrEditLabel">Create or edit a Work Road</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.workRoad.id">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.workRoad.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="riverApp.workRoad.roadName" for="field_roadName">Road Name</label>
+            <input type="text" class="form-control" name="roadName" id="field_roadName"
+                    ng-model="vm.workRoad.roadName"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="riverApp.workRoad.points" for="field_points">Points</label>
+            <input type="text" class="form-control" name="points" id="field_points"
+                    ng-model="vm.workRoad.points"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label translate="riverApp.workRoad.inspector" for="field_inspector">Inspector</label>
+            <select class="form-control" id="field_inspector" name="inspector" ng-model="vm.workRoad.inspector" ng-options="inspector as inspector.userName for inspector in vm.inspectors track by inspector.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

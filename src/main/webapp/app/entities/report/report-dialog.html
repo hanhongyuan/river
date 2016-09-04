@@ -1,0 +1,78 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myReportLabel" translate="riverApp.report.home.createOrEditLabel">Create or edit a Report</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.report.id">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.report.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="riverApp.report.reportDateTime" for="field_reportDateTime">Report Date Time</label>
+                <div class="input-group">
+                    <input id="field_reportDateTime" type="text" class="form-control" name="reportDateTime" datetime-picker="{{dateformat}}" ng-model="vm.report.reportDateTime" is-open="vm.datePickerOpenStatus.reportDateTime"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-sm" ng-click="vm.openCalendar('reportDateTime')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="riverApp.report.content" for="field_content">Content</label>
+            <input type="text" class="form-control" name="content" id="field_content"
+                    ng-model="vm.report.content"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="riverApp.report.fileType" for="field_fileType">File Type</label>
+            <input type="text" class="form-control" name="fileType" id="field_fileType"
+                    ng-model="vm.report.fileType"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="riverApp.report.filePath" for="field_filePath">File Path</label>
+            <input type="text" class="form-control" name="filePath" id="field_filePath"
+                    ng-model="vm.report.filePath"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="riverApp.report.longitude" for="field_longitude">Longitude</label>
+            <input type="number" class="form-control" name="longitude" id="field_longitude"
+                    ng-model="vm.report.longitude"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="riverApp.report.latitude" for="field_latitude">Latitude</label>
+            <input type="number" class="form-control" name="latitude" id="field_latitude"
+                    ng-model="vm.report.latitude"
+                     />
+        </div>
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" translate="riverApp.report.isRead" for="field_isRead">Is Read</label>-->
+            <!--<input type="checkbox" class="form-control" name="isRead" id="field_isRead"-->
+                    <!--ng-model="vm.report.isRead"-->
+                     <!--/>-->
+        <!--</div>-->
+
+        <div class="form-group">
+            <label translate="riverApp.report.inspector" for="field_inspector">Inspector</label>
+            <select class="form-control" id="field_inspector" name="inspector" ng-model="vm.report.inspector" ng-options="inspector as inspector.userName for inspector in vm.inspectors track by inspector.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

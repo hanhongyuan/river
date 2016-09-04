@@ -1,0 +1,25 @@
+{
+    "riverApp": {
+        "message" : {
+            "home": {
+                "title": "推送消息",
+                "createLabel": "新建推送消息",
+                "createOrEditLabel": "新建或修改推送消息",
+                "search": "搜索消息"
+            },
+            "created": "{{ param }} 新建了推送消息",
+            "updated": "{{ param }} 更新了推送消息",
+            "deleted": "{{ param }} 删除了推送消息",
+            "delete": {
+                "question": "确定删除 {{ id }}?"
+            },
+            "detail": {
+                "title": "推送消息"
+            },
+            "title": "标题",
+            "content": "内容",
+            "createDateTime": "推送时间",
+            "inspector": "接收人"
+        }
+    }
+}

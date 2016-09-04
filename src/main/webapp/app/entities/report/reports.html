@@ -1,0 +1,76 @@
+<div>
+    <h2 translate="riverApp.report.home.title">Reports</h2>
+    <jhi-alert></jhi-alert>
+    <!--<div class="container-fluid">-->
+        <!--<div class="row">-->
+            <!--<div class="col-xs-4 no-padding-left">-->
+                <!--<button class="btn btn-primary" ui-sref="report.new" >-->
+                    <!--<span class="glyphicon glyphicon-plus"></span>-->
+                    <!--<span  translate="riverApp.report.home.createLabel">-->
+                        <!--Create new Report-->
+                    <!--</span>-->
+                <!--</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<br/>-->
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="reportDateTime"><span translate="riverApp.report.reportDateTime">Report Date Time</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="content"><span translate="riverApp.report.content">Content</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fileType"><span translate="riverApp.report.fileType">File Type</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="filePath"><span translate="riverApp.report.filePath">File Path</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="longitude"><span translate="riverApp.report.longitude">Longitude</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="latitude"><span translate="riverApp.report.latitude">Latitude</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!--<th jh-sort-by="isRead"><span translate="riverApp.report.isRead">Is Read</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <th jh-sort-by="inspector.id"><span translate="riverApp.report.inspector">Inspector</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="report in vm.reports track by report.id">
+                    <td><a ui-sref="report-detail({id:report.id})">{{report.id}}</a></td>
+                    <td>{{report.reportDateTime | date:'medium'}}</td>
+                    <td>{{report.content}}</td>
+                    <td>{{report.fileType}}</td>
+                    <td>{{report.filePath}}</td>
+                    <td>{{report.longitude}}</td>
+                    <td>{{report.latitude}}</td>
+                    <!--<td>{{report.isRead}}</td>-->
+                    <td>
+                        <a ui-sref="inspector-detail({id:report.inspector.id})">{{report.inspector.userName}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="report-detail({id:report.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="report.edit({id:report.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="report.delete({id:report.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

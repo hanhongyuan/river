@@ -1,0 +1,30 @@
+{
+    "riverApp": {
+        "inspector" : {
+            "home": {
+                "title": "巡视员",
+                "createLabel": "初始化巡视员数据",
+                "createOrEditLabel": "新建或修改数据",
+                "search": "搜索巡视员"
+            },
+            "created": "{{ param }} 初始化了巡视员数据",
+            "updated": "{{ param }} 修改了巡视员数据",
+            "deleted": "{{ param }} 删除了巡视员数据",
+            "delete": {
+                "question": "确定删除 {{ userName }}?"
+            },
+            "detail": {
+                "title": "巡视员"
+            },
+            "userCode": "用户编码",
+            "userName": "用户名",
+            "deviceSeq": "设备号",
+            "workDay": "工作日",
+            "workTime": "工作时间",
+            "offWorkTime": "下班时间",
+            "workRoad": "负责路段",
+            "report": "上报问题",
+            "message": "消息"
+        }
+    }
+}

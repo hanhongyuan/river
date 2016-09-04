@@ -1,0 +1,62 @@
+<div>
+    <h2 translate="riverApp.workRoad.home.title">Work Roads</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="work-road.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="riverApp.workRoad.home.createLabel">
+                        Create new Work Road
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span translate="global.field.id">ID</span></th>
+                    <th><span translate="riverApp.workRoad.roadName">Road Name</span></th>
+                    <th><span translate="riverApp.workRoad.points">Points</span></th>
+                    <th><span translate="riverApp.workRoad.inspector">Inspector</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="workRoad in vm.workRoads track by workRoad.id">
+                    <td><a ui-sref="work-road-detail({id:workRoad.id})">{{workRoad.id}}</a></td>
+                    <td>{{workRoad.roadName}}</td>
+                    <td>{{workRoad.points}}</td>
+                    <td>
+                        <a ui-sref="inspector-detail({id:workRoad.inspector.id})">{{workRoad.inspector.userName}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="work-road-detail({id:workRoad.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="work-road.edit({id:workRoad.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="work-road.delete({id:workRoad.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

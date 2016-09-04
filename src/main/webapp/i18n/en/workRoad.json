@@ -1,0 +1,24 @@
+{
+    "riverApp": {
+        "workRoad" : {
+            "home": {
+                "title": "Work Roads",
+                "createLabel": "Create a new Work Road",
+                "createOrEditLabel": "Create or edit a Work Road",
+                "search": "Search for Work Road"
+            },
+            "created": "A new Work Road is created with identifier {{ param }}",
+            "updated": "A Work Road is updated with identifier {{ param }}",
+            "deleted": "A Work Road is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Work Road {{ id }}?"
+            },
+            "detail": {
+                "title": "Work Road"
+            },
+            "roadName": "Road Name",
+            "points": "Points",
+            "inspector": "Inspector"
+        }
+    }
+}
